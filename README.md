@@ -11,6 +11,8 @@
 new で webhook_url を指定して postMessage() するだけ
 
 ```php
+use Kanagama\SimpleSlack;
+
 $slack = new \Kanagama\SimpleSlack\SimpleSlack($slack_webhook_url);
 
 
