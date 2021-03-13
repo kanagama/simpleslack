@@ -1,5 +1,5 @@
 {
-    "name": "kanagama/slack",
+    "name": "kanagama/simpleslack",
     "description": "slack webhook.",
     "keywords": ["slack", "kanagama"],
     "type": "library",
