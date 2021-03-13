@@ -60,3 +60,15 @@ submit から、githubのURLを登録する
 ```
 https://github.com/kanagama/simpleslack
 ```
+
+## バージョン管理
+
+packagist はタグでバージョン管理されているようなので、タグでpushする
+
+```
+git tag v1.0.0
+```
+
+```
+git push origin --tags
+```
