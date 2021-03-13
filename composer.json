@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Kanagama\\Simpleslack\\": "src"
+            "Kanagama\\SimpleSlack\\": "src"
         }
     },
     "homepage": "https://github.com/kanagama/",
