@@ -37,9 +37,9 @@ $slack->postMessage('テスト投稿');
 
 # パッケージ作成
 
-## 必要なもの
+## 最低限必要なもの
 
-composer.json と phpファイルのみ
+composer.json と phpファイルのみ。他は無くてもパッケージ化可能。
 
 ### composer.json 説明
 
@@ -63,15 +63,15 @@ composer.json と phpファイルのみ
 
 # packagist への登録
 
-
 ## アカウント作成 & github紐付け
-いきなり github login は出来ない模様。
-アカウントを作成してから、githubアカウントを紐付ける。
+いきなり github login は出来ない模様。先にアカウントを作成する。
+
+その後、packagist設定画面でgithubアカウントを紐付ける。
 
 
 ## パッケージ登録
 
-submit から、githubのURLを登録する
+packagist メニュー の submit から、githubのURLを登録する
 
 
 ```
