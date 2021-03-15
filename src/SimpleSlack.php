@@ -50,7 +50,7 @@ class SlackClient
      *
      * @param string $webhook_url
      */
-    public static function setUrl(string $webhook_url = '')
+    public function setUrl(string $webhook_url = '')
     {
         // 引数が空の場合、環境変数で設定されている値を取得する（あれば）
         if (empty($webhook_url) && getenv('SIMPLE_SLACK_WEBHOOK_URL')) {
