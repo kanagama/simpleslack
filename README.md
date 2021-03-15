@@ -11,27 +11,23 @@
 new で webhook_url を指定して postMessage() するだけ
 
 ```php
-use Kanagama\SimpleSlack;
+use Kanagama\SimpleSlack\SlackClient;
 
-$slack = new \Kanagama\SimpleSlack\SimpleSlack($slack_webhook_url);
-
-
-$slack->postMessage('テスト投稿');
+SlackClient::get()
+    ->setUrl($webhool_url)
+    ->postMessage('テスト投稿');
 ```
 
-### webhook_url を毎回指定するのが面倒であれば、環境変数を設定すればOK
+### setUrl() で webhook_url を毎回指定するのが面倒であれば、環境変数を設定すればOK
 
 ```
 export SIMPLE_SLACK_WEBHOOK_URL="https://hooks.slack.com/services/xxxxxxxx/xxxxxxxxx/xxxxxxxx"
 ```
 
 ```php
-use Kanagama\SimpleSlack;
+SlackClient::get()->postMessage('テスト投稿');
 
-// 省略出来ます
-$slack = new \Kanagama\SimpleSlack\SimpleSlack();
-
-
+$slack = SlackClient::get();
 $slack->postMessage('テスト投稿');
 ```
 
