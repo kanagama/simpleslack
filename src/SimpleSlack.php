@@ -7,33 +7,42 @@ use BadFunctionCallException;
 /**
  * シンプルなslack通知
  */
-class SimpleSlack
+class SlackClient
 {
+    /**
+     * しんぐるとん
+     */
+    private static $singleton = null;
+
     /**
      * webhookURL
      */
-    protected $webhook_url;
+    private $webhook_url = '';
 
     /**
      * Guzzle Http Client
      */
-    protected $guzzle;
+    private $guzzle = null;
 
     /**
      * 設定
-     *
-     * @param string $url
      */
-    public function __construct(string $webhook_url = '')
+    public function __construct()
     {
-        $this->setWebhookUrl($webhook_url);
-
-        // 必須パラメータ
-        if (empty($this->webhook_url)) {
-            throw new BadFunctionCallException;
+        if (is_null($this->guzzle)) {
+            $this->guzzle = new \GuzzleHttp\Client;
         }
+    }
 
-        $this->guzzle = new \GuzzleHttp\Client;
+    /**
+     * インスタンス取得
+     */
+    public static function get()
+    {
+        if (is_null(self::$singleton)) {
+            self::$singleton = new self();
+        }
+        return self::$singleton;
     }
 
     /**
@@ -41,7 +50,7 @@ class SimpleSlack
      *
      * @param string $webhook_url
      */
-    public function setWebhookUrl(string $webhook_url)
+    public static function setUrl(string $webhook_url = '')
     {
         // 引数が空の場合、環境変数で設定されている値を取得する（あれば）
         if (empty($webhook_url) && getenv('SIMPLE_SLACK_WEBHOOK_URL')) {
@@ -58,10 +67,23 @@ class SimpleSlack
      */
     public function postMessage(string $message)
     {
+        $this->setUrl($this->webhook_url);
+        $this->checkWebHook();
+
         $this->guzzle->request('POST', $this->webhook_url, [
             'json' => [
                 'text' => $message,
             ],
         ]);
+    }
+
+    /**
+     * webhookURL存在チェック
+     */
+    private function checkWebHook()
+    {
+        if (empty($this->webhook_url)) {
+            throw new BadFunctionCallException('Webhook URLが指定されていません。');
+        }
     }
 }
